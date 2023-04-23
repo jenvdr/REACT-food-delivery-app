@@ -30,7 +30,7 @@ const AvailableMeals = () => {
 
     fetchMeals(
       {url: 'https://react-food-felivery-app-default-rtdb.europe-west1.firebasedatabase.app/meals.json'}, transformMeals);
-  }, [fetchMeals])
+  }, [])
 
   const mealsList = meals.map((meal) => (
     <MealItem
