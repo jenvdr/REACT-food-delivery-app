@@ -15,7 +15,6 @@ const AvailableMeals = () => {
   useEffect(() => {
     const transformMeals = mealObj => {
       const loadedMeals = [];
-      console.log(`mealOBJ: ${JSON.stringify(mealObj)}`);
       for (const key in mealObj) {
       
         loadedMeals.push({

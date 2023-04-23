@@ -22,10 +22,8 @@ const useHTTP = () => {
 
         const data = await response.json();
         applyData(data);
-        console.log(`data: ${JSON.stringify(data)}`)
 
       } catch (error) {
-        console.log(error);
       }
       setIsLoading(false);
     }, []);
