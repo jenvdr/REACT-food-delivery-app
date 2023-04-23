@@ -17,13 +17,15 @@ const useHTTP = () => {
             )
 
         if (!response.ok) {
-            throw new Error('Request failed!');
+            throw new Error('Something went wrong!');
         }
 
         const data = await response.json();
         applyData(data);
 
       } catch (error) {
+        setIsLoading(false);
+        setError(error.message);
       }
       setIsLoading(false);
     }, []);

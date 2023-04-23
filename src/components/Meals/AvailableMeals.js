@@ -28,14 +28,22 @@ const AvailableMeals = () => {
       setMeals(loadedMeals);
     };
 
-    fetchMeals(
-      {url: 'https://react-food-felivery-app-default-rtdb.europe-west1.firebasedatabase.app/meals.json'}, transformMeals);
+    fetchMeals({url: 'https://react-food-felivery-app-default-rtdb.europe-west1.firebasedatabase.app/meals.json'}, transformMeals);
+
   }, [])
 
   if (isLoading) {
     return (
       <section className={classes.MealsLoading}>
         <p>Loading...</p>
+      </section>
+    )
+  }
+
+  if (error) {
+    return (
+      <section className={classes.MealsError}>
+        <p>{error}</p>
       </section>
     )
   }
