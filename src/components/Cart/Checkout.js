@@ -1,15 +1,27 @@
 import classes from './Checkout.module.css';
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 
+const isEmpty = value => value.trim().length === '';
+const isFiveChars = value => value.trim().length === 5;
 
 const Checkout = props => {
     const nameInputRef = useRef();
     const streetInputRef = useRef();
-    const posctodeInputRef = useRef();
+    const postcodeInputRef = useRef();
     const cityInputRef = useRef();
 
     const submitHandler = event => {
         event.preventDefault();
+
+        const enteredName = nameInputRef.current.value;
+        const enteredStreet = streetInputRef.current.value;
+        const enteredPostcode = postcodeInputRef.current.value;
+        const enteredCity = cityInputRef.current.value;
+
+        const enteredNameValid = !isEmpty(enteredName)
+        const enteredStreetValid = !isEmpty(enteredStreet)
+        const enteredPostcodeValid = isFiveChars(enteredPostcode)
+        const enteredCityValid = !isEmpty(enteredCity)
     }
 
     return (
@@ -24,7 +36,7 @@ const Checkout = props => {
             </div>
             <div className={classes.control}>
                 <label htmlFor="posctode">Postal code</label>
-                <input id="posctode" type="text" ref={posctodeInputRef}/>
+                <input id="posctode" type="text" ref={postcodeInputRef}/>
             </div>
             <div className={classes.control}>
                 <label htmlFor="city">City</label>
