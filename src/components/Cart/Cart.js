@@ -5,6 +5,7 @@ import CartItem from './CartItem';
 import classes from './Cart.module.css';
 import CartContext from '../../store/cart-context';
 import Checkout from './Checkout';
+import useHTTP from '../../hooks/use-http';
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
@@ -12,6 +13,10 @@ const Cart = (props) => {
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
+  
+  const httpData = useHTTP();
+
+  const { sendRequest: fetchMeals } = httpData;
 
   const cartItemRemoveHandler = (id) => {
     cartCtx.removeItem(id);
@@ -23,7 +28,18 @@ const Cart = (props) => {
 
   const orderClickHandler = () => {
     setShowForm(true);
-  }
+  };
+
+  const submitOrderHandler = userData => {
+    fetchMeals({
+      url:'https://react-food-felivery-app-default-rtdb.europe-west1.firebasedatabase.app/order.json',
+      method: 'POST',
+      body: {
+        user: userData,
+        orderedItems: cartCtx.items
+      }
+    });
+  };
 
   const cartItems = (
     <ul className={classes['cart-items']}>
@@ -57,7 +73,7 @@ const Cart = (props) => {
         <span>{totalAmount}</span>
       </div>
       {!showForm && modalActions}
-      {showForm && <Checkout onCancel={props.onClose}/>}
+      {showForm && <Checkout onSubmit={submitOrderHandler} onCancel={props.onClose}/>}
     </Modal>
   );
 };
