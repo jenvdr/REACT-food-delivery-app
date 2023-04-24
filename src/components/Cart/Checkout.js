@@ -13,7 +13,7 @@ const Checkout = props => {
     }
 
     return (
-        <form onSubmit={submitHandler}>
+        <form className={classes.form} onSubmit={submitHandler}>
             <div className={classes.control}>
                 <label htmlFor="name">Your name</label>
                 <input id="name" type="text" ref={nameInputRef}/>
@@ -31,6 +31,7 @@ const Checkout = props => {
                 <input id="city" type="text" ref={cityInputRef}/>
             </div>
             <div className={classes.actions}>
+                <button type="button" onClick={props.onCancel}>Cancel</button>
                 <button>Submit</button>
             </div>
         </form>
