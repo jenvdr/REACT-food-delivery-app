@@ -17,43 +17,7 @@ const Checkout = props => {
     const postcodeInputRef = useRef();
     const cityInputRef = useRef();
 
-    // let enteredName = '';
-    // let enteredStreet = '';
-    // let enteredPostcode = '';
-    // let enteredCity = '';
-
-    const changeHandler = event => {
-        // switch (event.target.id) {
-        //     case "name" :
-        //         enteredName = event.target.value;
-        //         break;
-        //     case "street" :
-        //         enteredStreet = event.target.value;
-        //         break;
-        //     case "postcode" :
-        //         enteredPostcode = event.target.value;
-        //         break;
-        //     case "city" :
-        //         enteredCity = event.target.value;
-        //         break;
-        //     default:
-        // }
-
-        // const enteredNameValid = !isEmpty(enteredName);
-        // const enteredStreetValid = !isEmpty(enteredStreet);
-        // const enteredPostcodeValid = isFiveChars(enteredPostcode);
-        // const enteredCityValid = !isEmpty(enteredCity);
-
-        // setFormInputsValidity({
-        //     name: enteredNameValid,
-        //     street: enteredStreetValid,
-        //     postcode: enteredPostcodeValid,
-        //     city: enteredCityValid
-        // });
-
-    }
-
-    const submitHandler = (event, formInputsValidity) => {
+    const submitHandler = (event) => {
         event.preventDefault();
 
         const enteredName = nameInputRef.current.value;
@@ -73,7 +37,7 @@ const Checkout = props => {
             city: enteredCityValid
         });
 
-        const formIsValid = formInputsValidity.name && formInputsValidity.street && formInputsValidity.postcode && formInputsValidity.city;
+        const formIsValid = enteredNameValid && enteredStreetValid && enteredPostcodeValid && enteredCityValid;
 
         if (!formIsValid) {
             return;
@@ -84,22 +48,22 @@ const Checkout = props => {
         <form className={classes.form} onSubmit={submitHandler}>
             <div className={`${classes.control} ${formInputsValidity.name ? '' : classes.invalid}`}>
                 <label htmlFor="name">Your name</label>
-                <input id="name" type="text" ref={nameInputRef} onChange={changeHandler}/>
+                <input id="name" type="text" ref={nameInputRef}/>
                 {!formInputsValidity.name && <p>Please enter a valid name.</p>}
             </div>
             <div className={`${classes.control} ${formInputsValidity.street ? '' : classes.invalid}`}>
                 <label htmlFor="street">Street</label>
-                <input id="street" type="text" ref={streetInputRef} onChange={changeHandler}/>
+                <input id="street" type="text" ref={streetInputRef}/>
                 {!formInputsValidity.street && <p>Please enter a valid street.</p>}
             </div>
             <div className={`${classes.control} ${formInputsValidity.postcode ? '' : classes.invalid}`}>
                 <label htmlFor="posctode">Postal code</label>
-                <input id="posctode" type="text" ref={postcodeInputRef} onChange={changeHandler}/>
+                <input id="posctode" type="text" ref={postcodeInputRef}/>
                 {!formInputsValidity.postcode && <p>Please enter a valid postcode.</p>}
             </div>
             <div className={`${classes.control} ${formInputsValidity.city ? '' : classes.invalid}`}>
                 <label htmlFor="city">City</label>
-                <input id="city" type="text" ref={cityInputRef} onChange={changeHandler}/>
+                <input id="city" type="text" ref={cityInputRef}/>
                 {!formInputsValidity.city && <p>Please enter a valid city.</p>}
             </div>
             <div className={classes.actions}>
