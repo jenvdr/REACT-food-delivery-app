@@ -1,29 +1,34 @@
 import classes from './Checkout.module.css';
-import React from 'react';
+import React, {useRef} from 'react';
+
 
 const Checkout = props => {
-    const name = 'Jennifer';
-    const street = 'George Row';
-    const postal = 'SE16 4UT';
-    const city = 'London';
+    const nameInputRef = useRef();
+    const streetInputRef = useRef();
+    const posctodeInputRef = useRef();
+    const cityInputRef = useRef();
+
+    const submitHandler = event => {
+        event.preventDefault();
+    }
 
     return (
-        <form>
+        <form onSubmit={submitHandler}>
             <div className={classes.control}>
                 <label htmlFor="name">Your name</label>
-                <input id="name" type="text" value={name}/>
+                <input id="name" type="text" ref={nameInputRef}/>
             </div>
             <div className={classes.control}>
                 <label htmlFor="street">Street</label>
-                <input id="street" type="text" value={street}/>
+                <input id="street" type="text" ref={streetInputRef}/>
             </div>
             <div className={classes.control}>
-                <label htmlFor="postal">Postal code</label>
-                <input id="postal" type="text" value={postal}/>
+                <label htmlFor="posctode">Postal code</label>
+                <input id="posctode" type="text" ref={posctodeInputRef}/>
             </div>
             <div className={classes.control}>
                 <label htmlFor="city">City</label>
-                <input id="city" type="text" value={city}/>
+                <input id="city" type="text" ref={cityInputRef}/>
             </div>
             <div className={classes.actions}>
                 <button>Submit</button>
